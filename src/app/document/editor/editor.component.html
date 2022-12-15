@@ -1,0 +1,32 @@
+<div class="container p-0">
+  <form [formGroup]="form" (ngSubmit)="publishDoc()">
+    <div class="row justify-content-end">
+      <div class="w-auto">
+        <button type="submit" class="btn btn-secondary m-1">Publish</button>
+        <button type="button" class="btn btn-primary m-1" (click)="closeEditor()">Close</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="editable" [attr.contenteditable]="$any(allowEdit)" (click)="onClick($event)"
+             (dblclick)="onDblClick($event)" (blur)="onBlur($event)">
+          <h2 *ngIf="pageDetail else newTitle" class="title text-secondary" id="title">{{$any(pageDetail.title)}}</h2>
+          <ng-template #newTitle>
+            <h2 class="title text-secondary" id="newTitle">Enter page title here</h2>
+          </ng-template>
+        </div>
+      </div>
+
+
+      <div class="content">
+        <div class="editor">
+          <ngx-editor-menu [editor]="$any(editor)" [toolbar]="toolbar">
+          </ngx-editor-menu>
+          <ngx-editor [editor]="$any(editor)" formControlName="editorContent">
+          </ngx-editor>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

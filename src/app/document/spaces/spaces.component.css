@@ -1,0 +1,7 @@
+.dropdown-toggle::after {
+  display:none;
+}
+.dropdown-toggle{
+  border: 0px ;
+  padding: 4px 16px;
+}

@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="modal-header">
+    <div>
+      <h5 class="modal-title" id="exampleModalLabel">Page title:</h5>
+      <p *ngIf="errorMessage" class="text-warning">{{errorMessage}}</p>
+    </div>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="cancel()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <input type="text" class="form-control" placeholder="Enter title here!" formControlName="title"/>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">
+      Close
+    </button>
+    <button type="submit" class="btn btn-primary">Save changes</button>
+  </div>s
+</form>

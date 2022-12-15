@@ -1,0 +1,60 @@
+<div>
+  <div class="row m-4">
+    <div class="col-md-3">
+      <div class="user-nav">
+        <div>
+          <div class="mt-4 align-items-center text-center">
+            <img class="avatar-document shadow-4-strong mx-auto d-block" src="../../assets/lisa.webp">
+            <p>Hoang Lam</p>
+          </div>
+
+          <div class="d-flex flex-column w-100 align-items-start">
+            <a>
+              <fa-icon class="pe-3" [icon]="faHouseUser"></fa-icon>
+              Overview</a>
+            <a>
+              <fa-icon class="pe-3" [icon]="faHistory"></fa-icon>
+              Recent</a>
+            <a>
+              <fa-icon class="pe-3" [icon]="faStart"></fa-icon>
+              Starred</a>
+            <a>
+              <fa-icon class="pe-3" [icon]="faFile"></fa-icon>
+              Drafts</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div>
+        <div>
+          <h3>Pick up where you left off</h3>
+        </div>
+        <div>
+          <ul *ngFor="let page of leftOff" class="list-unstyled">
+              <li (click)="goToSpace($any(page.pageId))">
+                <div class="d-flex flex-row">
+                <div style="width: 60px">
+                  <img class="w-100 h-80" src="../../assets/file-icon.png" alt="">
+                </div>
+                <div>
+                  <div>
+                    <h4>{{page.title}}</h4>
+                  </div>
+                  <div class="d-flex flex-row">
+                    <div>
+                      <p>You visited {{page.visitedDate}}</p>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <a (click)="goToSpace($any(null))">Go To Space</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.user-nav{
+  position: relative;
+  display: flex;
+  background-color: #9395d9;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  border-radius: 3px;
+  max-width: 240px;
+  min-width: 100px;
+  border-bottom: 1px solid black;
+}
+.avatar-document{
+  border-radius:50%;
+  width:100px;
+  height:120px;
+}

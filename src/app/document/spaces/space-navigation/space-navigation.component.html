@@ -1,0 +1,32 @@
+<div>
+  <ul *ngIf="spaceNav != null" style="list-style-type: none; font-size: medium" class="m-0 p-0">
+    <li (click)="changePageId($any(spaceNav.pageId))">
+      <div class="row">
+        <div class="col">
+          <a class="text-nowrap text-decoration-none">
+        <span *ngIf="($any(spaceNav.pages?.length) > 0 && showSubPage); else other_content">
+        <fa-icon (click)="showSubPage = !showSubPage" [icon]="faCaretDown"></fa-icon>
+        </span>
+            <ng-template #other_content>
+              <fa-icon *ngIf="($any(spaceNav.pages?.length) > 0 && !showSubPage); else another_content"
+                       (click)="showSubPage = !showSubPage" [icon]="faCaretRight"></fa-icon>
+              <ng-template #another_content>
+                <fa-icon (click)="showSubPage = !showSubPage" [icon]="faFileWord"></fa-icon>
+              </ng-template>
+            </ng-template>
+            {{spaceNav.title}}</a>
+        </div>
+        <div class="col text-end w-auto" data-toggle="tooltip" data-placement="top" title="Create a child page">
+          <button (click)="createPageInPage($any(spaceNav.pageId))" class="btn text-muted">
+            <fa-icon [icon]="faPlus"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </li>
+    <ng-template [ngIf]="showSubPage">
+      <ul *ngFor="let page of $any(spaceNav.pages)">
+        <app-space-navigation [spaceNav]="page" (pageId)="changePageId($event)" ></app-space-navigation>
+      </ul>
+    </ng-template>
+  </ul>
+</div>

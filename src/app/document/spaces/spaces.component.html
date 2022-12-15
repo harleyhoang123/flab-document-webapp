@@ -1,0 +1,86 @@
+<div class="m-3">
+  <div class="row w-100">
+    <div class="col-3">
+      <div class="row">
+        <div>
+          <h5>FPT Lab Management System</h5>
+        </div>
+        <div class="row p-4">
+          <a (click)="getOverviewPage()">
+            <fa-icon [icon]="faAlignLeft"></fa-icon>
+            <span class="ms-3">Overview</span></a>
+          <a (click)="goToSpaceSetting()">
+            <fa-icon [icon]="faWrench"></fa-icon>
+            <span class="ms-3">Space Setting</span></a>
+        </div>
+        <div>
+          <div>
+            <p class="fw-lighter fs-6">SHORTCUTS</p>
+          </div>
+          <div>
+            <div class="row">
+              <div class="col">
+                <p>Pages</p>
+              </div>
+              <div class="col text-end w-auto" data-toggle="tooltip" data-placement="top" title="Create a page">
+                <button type="submit" class="btn" (click)="createPageInWorkspace()" ><fa-icon [icon]="faPlus"></fa-icon></button>
+              </div>
+            </div>
+
+            <div class="overflow-scroll ps-4" style="overflow-x: scroll">
+              <div *ngFor="let page of $any(spaceNav)">
+                <app-space-navigation [spaceNav]="page" (pageId)="selectPage($event)"></app-space-navigation>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <div class="row w-100">
+          <div class="col-9">
+            <h3>{{pageDetail?.title}}</h3>
+          </div>
+          <div class="col-3">
+            <div class="row float-end">
+              <div class="col" (click)="openEditorPage()">
+                <fa-icon [icon]="faPenNib"></fa-icon>
+              </div>
+              <div class="col">
+                <a role="button" *ngIf="locked == false" (click)="lockPage()">
+                  <fa-icon [icon]="faLockOpen"></fa-icon>
+                </a>
+                <a role="button" *ngIf="locked" (click)="lockPage()">
+                  <fa-icon [icon]="faLock"></fa-icon>
+                </a>
+              </div>
+              <div class="col">
+                <div ngbDropdown class="d-inline-block">
+                  <a role="button" class="nav-link active" aria-current="page" ngbDropdownToggle>
+                    <fa-icon [icon]="faEllipsisH"></fa-icon>
+                  </a >
+                  <div ngbDropdownMenu>
+                    <div ngbDropdown placement="left-top">
+                      <button ngbDropdownToggle class="btn">Export</button>
+                      <div ngbDropdownMenu>
+                        <button (click)="exportToPDF()" ngbDropdownItem>Export To PDF</button>
+                        <button (click)="exportToWord()" ngbDropdownItem>Export To Word</button>
+                      </div>
+                    </div>
+                    <button ngbDropdownItem (click)="deletePage()">Delete</button>
+                    <button ngbDropdownItem (click)="openHistory()">Page history</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div  id="pageContent" [innerHTML]="trustedHTML"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
