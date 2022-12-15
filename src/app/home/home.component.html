@@ -1,0 +1,19 @@
+﻿<app-header [accountId]="accountId"></app-header>
+<!--<div>-->
+<!--  <img style="z-index: -1" class="w-100 h-100" src="../../assets/home-background.png" alt="">-->
+<!--</div>-->
+<div class="container">
+  <div class="container">
+    <h3>Spaces</h3>
+    <div class="container">
+      <p>Choose spaces you will work:</p>
+    </div>
+  </div>
+  <div class="container ms-5">
+    <ul *ngFor="let space of $any(spaces)" class="text-decoration-none list-unstyled">
+      <li><a (click)="goToDocumentDetail(space)">{{space.documentName}}</a></li>
+    </ul>
+  </div>
+</div>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
